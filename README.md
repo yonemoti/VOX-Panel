@@ -1,4 +1,4 @@
-# Premiere Pro用 VOX Panel
+# VOX Panel for Premiere Pro
 
 VOICEVOX Engineで音声を作成し、Premiere Proのプロジェクトやタイムラインに追加するUXPパネルです。
 
