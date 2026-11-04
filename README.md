@@ -1,4 +1,4 @@
-# VOX Panel for Premiere Pro
+# Premiere Pro用 VOX Panel
 
 VOICEVOX Engineで音声を作成し、Premiere Proのプロジェクトやタイムラインに追加するUXPパネルです。
 
@@ -22,14 +22,24 @@ macOS上のPremiere Pro 26.5.2で動作を確認しています。Windowsでは�
 
 ## インストール
 
-このリポジトリには、UDTで作成した`.ccx`インストーラーはまだありません。現在はソースをダウンロードしてUDTから読み込んでください。
+## かんたんインストール（おすすめ）
+
+[VOX Panel v1.2.0（.ccxインストーラー）をダウンロード](https://github.com/yonemoti/VOX-Panel/raw/refs/heads/main/voxpanel.ccx)
+
+1. 上のリンクから`voxpanel.ccx`をダウンロードします。
+2. `.ccx`ファイルをダブルクリックし、Creative Cloud Desktopの案内に従ってインストールします。
+3. Premiere Proで **ウィンドウ → UXPプラグイン → VOX Panel** を開きます。
+
+## ソースからインストール
+
+開発用にソースから読み込む場合は、GitHubの **Code → Download ZIP** からダウンロードして展開してください。
 
 1. GitHubの **Code → Download ZIP** からソースをダウンロードし、展開します。
 2. UDTで **Add Plugin（プラグインを追加）** を選び、展開したフォルダ内の`manifest.json`を指定します。
 3. プラグインの **Load（読み込み）** を押します。
 4. Premiere Proで **ウィンドウ → UXPプラグイン → VOX Panel** を開きます。
 
-`.ccx`ファイルで簡単にインストールできるようにするには、UDTの **… → Package（パッケージ）** から作成したパッケージをGitHub Releasesに追加します。ZIPファイルの拡張子を`.ccx`に変えるだけでは作成できません。詳しくは[Adobeのパッケージ作成手順](https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/package/)を参照してください。
+`.ccx`はUDTの **… → Package（パッケージ）** から作成しています。ZIPファイルの拡張子を`.ccx`に変えるだけでは作成できません。詳しくは[Adobeのパッケージ作成手順](https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/package/)を参照してください。
 
 ## 使い方
 
