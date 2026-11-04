@@ -2,6 +2,8 @@
 
 VOICEVOX Engineで音声を作成し、Premiere Proのプロジェクトやタイムラインに追加するUXPパネルです。
 
+開発者：**yonemoti**
+
 ## 主な機能
 
 - VOICEVOXの話者とスタイルを読み込み
