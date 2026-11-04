@@ -1,0 +1,94 @@
+html, body {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  background: #232323;
+  color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+* { box-sizing: border-box; }
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  padding: 14px;
+  color: #f2f2f2;
+  background: #232323;
+}
+main > * { flex-shrink: 0; margin-bottom: 13px; }
+header, .row, .actions { display: flex; flex-direction: row; align-items: center; }
+header { justify-content: space-between; border-bottom: 1px solid #555; padding-bottom: 11px; }
+header strong { display: block; font-size: 16px; color: #fff; }
+header small { display: block; color: #bbb; }
+label { display: block; min-width: 0; color: #eee; }
+input, select, textarea {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #47565a;
+  border-radius: 7px;
+  background: #20282b;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  outline: none;
+  box-shadow: none;
+}
+input:focus, select:focus, textarea:focus { border-color: #36b8a9; box-shadow: 0 0 0 1px #36b8a9; }
+textarea { min-height: 64px; resize: vertical; line-height: 1.5; }
+.row { margin-left: -5px; margin-right: -5px; }
+.row > label { flex: 1; margin: 0 5px; }
+.sliders { display: flex; flex-direction: column; }
+.slider-control { display: block; margin-bottom: 12px; }
+.slider-heading { display: flex; align-items: center; min-height: 26px; }
+.slider-heading > span { flex: 1; color: #eee; }
+.slider-heading output { min-width: 58px; margin-right: 8px; color: #c1cecf; text-align: right; font-variant-numeric: tabular-nums; cursor: text; }
+.slider-heading output:hover { color: #58d4c4; }
+.value-edit { width: 82px; min-width: 82px; margin: 0 8px 0 0; padding: 4px 6px; text-align: right; }
+.slider { height: 28px; padding: 10px 8px; cursor: pointer; touch-action: none; user-select: none; }
+.slider-track { position: relative; height: 6px; border-radius: 4px; background: #465256; }
+.slider-fill { position: absolute; top: 0; left: 0; height: 6px; border-radius: 4px; background: #35b5a5; }
+.slider-thumb { position: absolute; top: 50%; width: 16px; height: 16px; margin-left: -8px; margin-top: -8px; border: 2px solid #e5fffb; border-radius: 50%; background: #248f84; }
+.slider:focus { outline: 1px solid #35b5a5; outline-offset: 1px; }
+.reset { padding: 5px 8px; background: #414141; color: #ddd; font-size: 11px; }
+.reset-number { display: inline-block; width: auto; margin-top: 5px; }
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #4b5a5e;
+  border-radius: 8px;
+  background: #303a3e !important;
+  color: #edf4f4 !important;
+  padding: 9px 12px;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: none !important;
+  outline: none;
+}
+button.secondary { background: #293336 !important; border-color: #435155; }
+button#generate, button#playPreview { background: #236e67 !important; border-color: #338f85; }
+button:hover { background: #3a484c !important; }
+button#generate:hover, button#playPreview:hover { background: #2b8278 !important; }
+button:focus, button:active { outline: none !important; box-shadow: none !important; }
+button:focus-visible { outline: 2px solid #52cbbb !important; outline-offset: 2px; }
+button:disabled { opacity: .55; cursor: default; }
+.actions { justify-content: space-between; }
+.actions button:first-child { flex: 0 0 auto; margin-right: 8px; }
+.actions button:last-child { flex: 1; }
+.status { padding: 8px 10px; border: 1px solid #3c494c; border-radius: 7px; background: #293235; color: #d5dfdf; }
+.status.ok { color: #70d4ad; }
+.status.error { color: #ff9f9f; }
+.hint, details p { color: #bbb; font-size: 11px; }
+details { border-top: 1px solid #555; padding-top: 10px; }
+.preview-player { display: flex; flex-direction: row; align-items: center; width: 100%; padding: 7px 8px; border: 1px solid #435155; border-radius: 8px; background: #283235; }
+.preview-title { flex: 1; color: #ddd; font-size: 12px; }
+.preview-controls { display: flex; flex-direction: row; }
+.preview-controls button { margin-left: 6px; padding: 7px 10px; }
+video#player { position: absolute; left: -2px; bottom: 0; width: 1px; height: 1px; opacity: 0.01; }
