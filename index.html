@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <title>VOX Panel</title>
+</head>
+<body>
+  <main>
+    <header><div><strong>VOX Panel</strong><small>VOICEVOX for Premiere Pro</small></div><button id="connect" class="secondary">接続</button></header>
+    <p id="status" class="status">VOICEVOXに接続してください</p>
+    <label>読み上げテキスト<textarea id="text" rows="3" placeholder="ここにセリフを入力"></textarea></label>
+    <div class="actions"><button id="preview" class="secondary" disabled>試聴</button><button id="generate" disabled>再生成してPremiereに追加</button></div>
+    <div id="previewPlayer" class="preview-player" style="display:none">
+      <div class="preview-title">試聴プレーヤー</div>
+      <div class="preview-controls"><button id="playPreview" type="button">▶ 再生</button><button id="pausePreview" class="secondary" type="button">❚❚ 一時停止</button></div>
+      <video id="player" preload="metadata" aria-label="VOICEVOX試聴プレーヤー"></video>
+    </div>
+    <div class="row"><label>話者<select id="speaker"></select></label><label>スタイル<select id="style"></select></label></div>
+    <section class="sliders">
+      <div class="slider-control" data-id="speed" data-min="0.5" data-max="2" data-step="0.01" data-value="1" data-default="1" data-precision="2">
+        <div class="slider-heading"><span>話速</span><output id="speedOut">1.00</output><button class="reset" type="button">リセット</button></div>
+        <div class="slider" role="slider" tabindex="0" aria-label="話速" aria-valuemin="0.5" aria-valuemax="2" aria-valuenow="1"><div class="slider-track"><div class="slider-fill"></div><div class="slider-thumb"></div></div></div>
+      </div>
+      <div class="slider-control" data-id="pitch" data-min="-0.15" data-max="0.15" data-step="0.01" data-value="0" data-default="0" data-precision="2">
+        <div class="slider-heading"><span>音高</span><output id="pitchOut">0.00</output><button class="reset" type="button">リセット</button></div>
+        <div class="slider" role="slider" tabindex="0" aria-label="音高" aria-valuemin="-0.15" aria-valuemax="0.15" aria-valuenow="0"><div class="slider-track"><div class="slider-fill"></div><div class="slider-thumb"></div></div></div>
+      </div>
+      <div class="slider-control" data-id="intonation" data-min="0" data-max="2" data-step="0.01" data-value="1" data-default="1" data-precision="2">
+        <div class="slider-heading"><span>抑揚</span><output id="intonationOut">1.00</output><button class="reset" type="button">リセット</button></div>
+        <div class="slider" role="slider" tabindex="0" aria-label="抑揚" aria-valuemin="0" aria-valuemax="2" aria-valuenow="1"><div class="slider-track"><div class="slider-fill"></div><div class="slider-thumb"></div></div></div>
+      </div>
+      <div class="slider-control" data-id="volume" data-min="0" data-max="2" data-step="0.01" data-value="1" data-default="1" data-precision="2">
+        <div class="slider-heading"><span>音量</span><output id="volumeOut">1.00</output><button class="reset" type="button">リセット</button></div>
+        <div class="slider" role="slider" tabindex="0" aria-label="音量" aria-valuemin="0" aria-valuemax="2" aria-valuenow="1"><div class="slider-track"><div class="slider-fill"></div><div class="slider-thumb"></div></div></div>
+      </div>
+    </section>
+    <div class="row"><label>開始無音 (秒)<input id="preSilence" type="number" min="0" max="5" step="0.05" value="0"><button class="reset reset-number" type="button" data-target="preSilence">リセット</button></label><label>終了無音 (秒)<input id="postSilence" type="number" min="0" max="5" step="0.05" value="0.1"><button class="reset reset-number" type="button" data-target="postSilence">リセット</button></label></div>
+    <p class="hint">追加先: アクティブシーケンスの再生ヘッド位置 / A1</p>
+    <details><summary>接続設定</summary><label>Engine URL<input id="baseUrl" value="http://127.0.0.1:50021"></label><p>VOICEVOX本体を起動し、Engine APIを有効にしてください。</p></details>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>
