@@ -20,8 +20,6 @@ VOICEVOX Engineで音声を作成し、Premiere Proのプロジェクトやタ�
 
 macOS上のPremiere Pro 26.5.2で動作を確認しています。Windowsでは未検証です。
 
-## インストール
-
 ## かんたんインストール（おすすめ）
 
 [VOX Panel v1.2.0（.ccxインストーラー）をダウンロード](https://github.com/yonemoti/VOX-Panel/raw/refs/heads/main/voxpanel.ccx)
