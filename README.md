@@ -1,71 +1,60 @@
-# VOX Panel for Premiere Pro
+# Premiere Pro用 VOX Panel
 
-VOICEVOXのローカルEngineを操作して音声を作り、Premiere Proのプロジェクトとタイムラインに追加するUXPパネルです。
+VOICEVOX Engineで音声を作成し、Premiere Proのプロジェクトやタイムラインに追加するUXPパネルです。
 
-## Features
+## 主な機能
 
-- VOICEVOXの話者・スタイルを読み込み
-- テキスト、話速、音高、抑揚、音量、開始/終了無音を指定
-- パラメータのリセット、数値の直接入力、マウスドラッグでの調整
-- パネル内で試聴して再生成
-- WAVをPremiereプロジェクトへ読み込み、アクティブシーケンスの再生ヘッド位置へ追加
+- VOICEVOXの話者とスタイルを読み込み
+- 読み上げテキスト、話速、音高、抑揚、音量、開始・終了の無音を設定
+- 数値の直接入力やマウスドラッグで調整し、各設定をリセット
+- パネル内で試聴してから音声を再生成
+- WAVをPremiere Proに読み込み、アクティブシーケンスの再生ヘッド位置に追加
 
-## Requirements
+## 動作環境
 
 - Adobe Premiere Pro 25.6以降（26.xを中心に開発）
-- VOICEVOXデスクトップアプリを起動し、Engine APIを利用可能にしておくこと
-- Adobe Creative Cloud Desktop（`.ccx`インストーラーの導入に使用）
+- VOICEVOXデスクトップアプリを起動し、Engine APIを利用できる状態にすること
+- UXP Developer Tool（UDT）。プラグインの読み込みに使用します
 
-このプロジェクトはmacOS上のPremiere Pro 26.5.2で利用確認しています。Windowsは未検証です。
+macOS上のPremiere Pro 26.5.2で動作を確認しています。Windowsでは未検証です。
 
-## Install from source
+## インストール
 
-このリポジトリの初回公開には、UDTで作成した`.ccx`インストーラーはまだ添付されていません。現時点では、ソースを取得してUXP Developer Tool (UDT)から読み込んでください。
+このリポジトリには、UDTで作成した`.ccx`インストーラーはまだありません。現在はソースをダウンロードしてUDTから読み込んでください。
 
-1. GitHubの **Code → Download ZIP** からソースをダウンロードして展開します。
-2. UDTで **Add Plugin** を選び、展開したフォルダ内の`manifest.json`を指定します。
-3. プラグイン行の **Load** を押します。
+1. GitHubの **Code → Download ZIP** からソースをダウンロードし、展開します。
+2. UDTで **Add Plugin（プラグインを追加）** を選び、展開したフォルダ内の`manifest.json`を指定します。
+3. プラグインの **Load（読み込み）** を押します。
 4. Premiere Proで **ウィンドウ → UXPプラグイン → VOX Panel** を開きます。
 
-`.ccx`による簡単なインストールは、UDTの **… → Package** でパッケージを作成し、GitHub Releasesに追加した後に利用できます。Marketplace外からのプラグインである旨の確認が表示される場合があります。ソースを確認してからインストールしてください。
+`.ccx`ファイルで簡単にインストールできるようにするには、UDTの **… → Package（パッケージ）** から作成したパッケージをGitHub Releasesに追加します。ZIPファイルの拡張子を`.ccx`に変えるだけでは作成できません。詳しくは[Adobeのパッケージ作成手順](https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/package/)を参照してください。
 
-## Use
+## 使い方
 
-1. 読み上げテキストを入力し、すぐ下の**試聴**を押します。
-2. プレーヤーの**▶ 再生**で音声を確認します。数値を直接変えるには、話速・音高・抑揚・音量の値をダブルクリックします。
-3. **再生成してPremiereに追加**を押して保存先を選びます。
-4. WAVが保存され、PremiereプロジェクトとアクティブシーケンスのA1に追加されます。
+1. VOICEVOXを起動し、パネル上部の接続ボタンを押します。
+2. 読み上げテキストを入力し、すぐ下の**試聴**を押します。
+3. プレーヤーの**▶ 再生**で音声を確認します。話速・音高・抑揚・音量の数値を直接変えるには、値をダブルクリックします。
+4. **再生成してPremiereに追加**を押して保存先を選びます。WAVが保存され、Premiere ProのプロジェクトとアクティブシーケンスのA1に追加されます。
 
-## Build a `.ccx` package
+## 接続先とプライバシー
 
-For plugin maintainers:
+テキストと音声のリクエストは、同じコンピューター上のVOICEVOX Engine（`127.0.0.1:50021`または`localhost:50021`）に送信されます。プラグインはこの2つのローカル接続先以外へのリクエストを拒否します。
 
-1. Install Adobe UXP Developer Tool (UDT).
-2. In UDT, choose **Add Plugin** and select this folder's `manifest.json`.
-3. In the plugin row's **…** menu, select **Package**, then choose an output folder.
-4. Install the generated `.ccx` locally and verify it in Premiere before attaching it to a GitHub Release.
+Premiere Pro 26.xの開発環境でローカル接続だけを指定する設定が機能しなかったため、マニフェストではUXPのネットワーク許可を広く要求しています。実際の接続先はプラグイン側で上記のローカル接続先に制限しています。気になる場合は、インストール前に`main.js`と`manifest.json`を確認してください。
 
-Do not create the `.ccx` by simply renaming a ZIP. Adobe recommends packaging through UDT. See [Adobe's packaging guide](https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/package/).
+生成したWAVはユーザーが選んだフォルダに保存します。試聴用WAVはUXPの一時フォルダに保存します。
 
-## Privacy and permissions
+## 困ったときは
 
-VOICEVOX text and audio requests stay on the local machine and are sent to the local Engine at `127.0.0.1:50021` or `localhost:50021`. The plugin validates the URL and rejects other hosts and ports.
+- 接続できない場合は、VOICEVOXが起動していることとEngine APIが`http://127.0.0.1:50021`で利用できることを確認してください。
+- パネルが接続できない場合は、VOICEVOXのEngine/API設定とローカルアプリの通信許可を確認してください。
+- 音声を追加できない場合は、Premiere Proでプロジェクトを開き、追加先のシーケンスをアクティブにしてから実行してください。
+- 現在はCreative Cloud Marketplaceを通さない配布方法です。
 
-The manifest currently requests UXP network access broadly because Premiere 26.x did not honor the loopback-only domain entry in the development environment used for testing. The plugin code only constructs requests from the two local Engine URLs above. Review `main.js` and `manifest.json` before installing if you want to verify this behavior.
+## ライセンス
 
-Generated WAV files are saved only to a folder selected by the user. Preview WAVs are written to UXP's temporary folder.
+MITライセンスです。詳細は[LICENSE](LICENSE)を確認してください。
 
-## Troubleshooting
+## VOICEVOXの利用について
 
-- Ensure VOICEVOX is running and its Engine API is available at `http://127.0.0.1:50021`.
-- If the panel cannot connect, check the VOICEVOX Engine/API settings and its local-app/CORS permissions.
-- If audio is not added, open a Premiere project and make the target sequence active before pressing **再生成してPremiereに追加**.
-- The current release is independent distribution. It is not listed in the Creative Cloud Marketplace.
-
-## License
-
-MIT. See [LICENSE](LICENSE).
-
-## Credits
-
-This panel uses the VOICEVOX Engine API. VOICEVOX characters and generated voices remain subject to their respective terms and attribution requirements. See [VOICEVOX terms](https://voicevox.hiroshiba.jp/term/) and the selected character's usage rules.
+このパネルはVOICEVOX Engine APIを利用します。VOICEVOXや各キャラクター、生成音声にはそれぞれ利用規約やクレジット表記の条件があります。[VOICEVOX利用規約](https://voicevox.hiroshiba.jp/term/)と使用するキャラクターの利用条件を確認してください。
